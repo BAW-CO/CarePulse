@@ -337,7 +337,15 @@
 }
 
 /* =====  REACT PHONE NUMBER INPUT OVERRIDES */
+
 .PhoneInputInput {
+  outline: none;
+  margin-left: 4px;
+  background: #1a1d21;
+  font-size: 14px;
+  font-weight: 500;
+}
+.react-international-phone-input {
   outline: none;
   margin-left: 4px;
   background: #1a1d21;
