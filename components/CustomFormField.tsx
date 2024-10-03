@@ -72,7 +72,7 @@ export enum FormFieldType {
       return (
         <FormControl>
           <PhoneInput
-            // defaultCountry="US"
+            defaultCountry="US"
             placeholder={props.placeholder}
             // international
             // withCountryCallingCode

@@ -8,7 +8,7 @@ import { z } from "zod";
 import { useRouter } from "next/navigation";
 import { Form } from "@/components/ui/form";
 import { createUser } from "@/lib/actions/patient.actions";
-// import "react-phone-number-input/style.css;"
+import 'react-phone-number-input/style.css';
 import CustomFormField, { FormFieldType } from "../CustomFormField";
 import SubmitButton from "../SubmitButton";
 import { UserFormValidation } from "@/lib/validation";
