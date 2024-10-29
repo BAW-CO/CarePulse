@@ -41,25 +41,26 @@ export const getRecentAppointmentList = async () => {
       [Query.orderDesc("$createdAt")]
     );
 
-    // const scheduledAppointments = (
-    //   appointments.documents as Appointment[]
-    // ).filter((appointment) => appointment.status === "scheduled");
+    const scheduledAppointments = (
+      appointments.documents as Appointment[]
+    ).filter((appointment) => appointment.status === "scheduled");
 
-    // const pendingAppointments = (
-    //   appointments.documents as Appointment[]
-    // ).filter((appointment) => appointment.status === "pending");
+    const pendingAppointments = (
+      appointments.documents as Appointment[]
+    ).filter((appointment) => appointment.status === "pending");
 
-    // const cancelledAppointments = (
-    //   appointments.documents as Appointment[]
-    // ).filter((appointment) => appointment.status === "cancelled");
+    const cancelledAppointments = (
+      appointments.documents as Appointment[]
+    ).filter((appointment) => appointment.status === "cancelled");
 
-    // const data = {
-    //   totalCount: appointments.total,
-    //   scheduledCount: scheduledAppointments.length,
-    //   pendingCount: pendingAppointments.length,
-    //   cancelledCount: cancelledAppointments.length,
-    //   documents: appointments.documents,
-    // };
+    //@ts-ignore
+    const data = {
+      totalCount: appointments.total,
+      scheduledCount: scheduledAppointments.length,
+      pendingCount: pendingAppointments.length,
+      cancelledCount: cancelledAppointments.length,
+      documents: appointments.documents,
+    };
 
     const initialCounts = {
       scheduledCount: 0,
@@ -85,6 +86,7 @@ export const getRecentAppointmentList = async () => {
       initialCounts
     );
 
+    //@ts-ignore
     const data = {
       totalCount: appointments.total,
       ...counts,
@@ -100,7 +102,7 @@ export const getRecentAppointmentList = async () => {
   }
 };
 
-//  SEND SMS NOTIFICATION
+ //SEND SMS NOTIFICATION
 export const sendSMSNotification = async (userId: string, content: string) => {
   try {
     // https://appwrite.io/docs/references/1.5.x/server-nodejs/messaging#createSms
@@ -133,9 +135,14 @@ export const updateAppointment = async ({
       appointment
     );
 
-    if (!updatedAppointment) throw Error;
+    if (!updatedAppointment) throw Error('Appointment not found');
 
-    const smsMessage = `Greetings from CarePulse. ${type === "schedule" ? `Your appointment is confirmed for ${formatDateTime(appointment.schedule!, timeZone).dateTime} with Dr. ${appointment.primaryPhysician}` : `We regret to inform that your appointment for ${formatDateTime(appointment.schedule!, timeZone).dateTime} is cancelled. Reason:  ${appointment.cancellationReason}`}.`;
+    const smsMessage = 
+    `Greetings from CarePulse. 
+    ${type === "schedule" ? `Your appointment is confirmed for 
+      ${formatDateTime(appointment.schedule!).dateTime} with Dr. 
+      ${appointment.primaryPhysician}` : `Your appointment for ${formatDateTime(appointment.schedule!).dateTime} is cancelled. 
+      For the following reason:  ${appointment.cancellationReason}`}.`;
     await sendSMSNotification(userId, smsMessage);
 
     revalidatePath("/admin");

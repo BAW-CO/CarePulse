@@ -7,17 +7,18 @@ import { Dispatch, SetStateAction, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-
-import { SelectItem } from "../ui/select";
+import { SelectItem } from "/Users/bridget.williams/Desktop/FES Lessons/Carepulse/carepulse/components/ui/select.tsx";
 import { Doctors } from "/Users/bridget.williams/Desktop/FES Lessons/Carepulse/carepulse/constants";
-import { createAppointment, updateAppointment } from "/Users/bridget.williams/Desktop/FES Lessons/Carepulse/carepulse/lib/actions/appointment.actions.ts";
+import {
+  createAppointment,
+  updateAppointment,
+} from "/Users/bridget.williams/Desktop/FES Lessons/Carepulse/carepulse/lib/actions/appointment.actions.ts";
 import { getAppointmentSchema } from "/Users/bridget.williams/Desktop/FES Lessons/Carepulse/carepulse/lib/validation.ts";
 import { Appointment } from "/Users/bridget.williams/Desktop/FES Lessons/Carepulse/carepulse/types/appwrite.types.ts";
 
 import "react-datepicker/dist/react-datepicker.css";
 
-import CustomFormField, { FormFieldType } from "/Users/bridget.williams/Desktop/FES Lessons/Carepulse/carepulse/components/CustomFormField.tsx";
-
+import CustomFormField, { FormFieldType } from "../CustomFormField";
 import SubmitButton from "../SubmitButton";
 import { Form } from "../ui/form";
 
@@ -124,7 +125,7 @@ export const AppointmentForm = ({
       buttonLabel = "Schedule Appointment";
       break;
     default:
-      buttonLabel = "Submit Appointment";
+      buttonLabel = "Submit Apppointment";
   }
 
   return (
