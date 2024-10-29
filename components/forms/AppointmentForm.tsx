@@ -7,20 +7,23 @@ import { Dispatch, SetStateAction, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import { SelectItem } from "/Users/bridget.williams/Desktop/FES Lessons/Carepulse/carepulse/components/ui/select.tsx";
-import { Doctors } from "/Users/bridget.williams/Desktop/FES Lessons/Carepulse/carepulse/constants";
+import { SelectItem } from "@/components/ui/select";
+import { Doctors } from "@/constants";
 import {
   createAppointment,
   updateAppointment,
-} from "/Users/bridget.williams/Desktop/FES Lessons/Carepulse/carepulse/lib/actions/appointment.actions.ts";
-import { getAppointmentSchema } from "/Users/bridget.williams/Desktop/FES Lessons/Carepulse/carepulse/lib/validation.ts";
-import { Appointment } from "/Users/bridget.williams/Desktop/FES Lessons/Carepulse/carepulse/types/appwrite.types.ts";
+} from "@/lib/actions/appointment.actions";
+import { getAppointmentSchema } from "@/lib/validation";
+import { Appointment } from "@/types/appwrite.types";
 
 import "react-datepicker/dist/react-datepicker.css";
 
 import CustomFormField, { FormFieldType } from "../CustomFormField";
 import SubmitButton from "../SubmitButton";
 import { Form } from "../ui/form";
+
+// type Status = "pending" | "scheduled" | "cancelled";
+
 
 export const AppointmentForm = ({
   userId,
@@ -78,7 +81,7 @@ export const AppointmentForm = ({
           primaryPhysician: values.primaryPhysician,
           schedule: new Date(values.schedule),
           reason: values.reason!,
-          status: status as Status,
+          status: status as Status, 
           note: values.note,
         };
 
@@ -218,3 +221,5 @@ export const AppointmentForm = ({
     </Form>
   );
 };
+
+export default AppointmentForm;
