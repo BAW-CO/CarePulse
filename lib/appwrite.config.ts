@@ -1,4 +1,5 @@
-import { Client, Users, Databases, Storage, Messaging } from 'node-appwrite';
+import { Client, Users, Databases, Storage } from 'node-appwrite';
+// import { Messaging } from 'node-appwrite';
 
 
 
@@ -17,5 +18,5 @@ client
 
 export const databases = new Databases(client);
 export const storage = new Storage(client);
-export const messaging = new Messaging(client);
+// export const messaging = new Messaging(client);
 export const users = new Users(client);
