@@ -54,7 +54,7 @@ export const getRecentAppointmentList = async () => {
     ).filter((appointment) => appointment.status === "cancelled");
 
     //@ts-ignore
-    const data = {
+    const appointmentData = {
       totalCount: appointments.total,
       scheduledCount: scheduledAppointments.length,
       pendingCount: pendingAppointments.length,
@@ -87,13 +87,13 @@ export const getRecentAppointmentList = async () => {
     );
 
     //@ts-ignore
-    const data = {
+    const updatedAppointmentData = {
       totalCount: appointments.total,
       ...counts,
       documents: appointments.documents,
     };
 
-    return parseStringify(data);
+    return parseStringify(appointmentData);
   } catch (error) {
     console.error(
       "An error occurred while retrieving the recent appointments:",
